@@ -1,0 +1,58 @@
+<style>
+.scroll {
+    height: 100%;
+}
+.area{
+    position: relative
+    width: 100%;
+    margin:10px;
+    text-align: center;
+    display:block;
+}
+
+.content {
+    display:table-cell;
+    vertical-align:middle;    
+}​
+</style>
+<ion-view view-title="Daftar kerjaan hari ini">
+<ion-nav-bar class="bar-light">
+<ion-nav-buttons side="right">
+	<button class="button button-icon button-clear icon-right ion-ios-close-empty" ng-click='goback()'></button>
+</ion-nav-buttons>
+</ion-nav-bar>
+<ion-content overflow-scroll="false">
+<ion-refresher
+	pulling-text="Pull to refresh..."
+	on-refresh="doRefresh()">
+</ion-refresher>
+<div class="list padding">
+	<ion-item class="item item-icon-right" collection-repeat="job in jobs">
+		<i class="icon ion-location assertive" ng-click="showLocation(job.gmap)"></i>
+		<h2 style="font-weight:bold">{{job.title}}</h2>
+		<p>Oleh: {{job.name}}</p>
+		<p>({{job.location}})</p>
+		<p>{{job.datepost}}</p>
+		<div>
+			<a ng-href="tel:{{job.phone}}" class="button button-icon button-clear button-calm ion-iphone"></a>&nbsp;&nbsp;
+			<a ng-href="sms://{{job.phone}}?body=Makaryo:%20{{job.title}}" class="button button-icon button-clear button-energized ion-android-textsms"></a>&nbsp;&nbsp;
+			<a ng-href="whatsapp://send?text=Makaryo:%20{{job.title}}" class="button button-icon button-clear button-balanced ion-social-whatsapp" ng-click="copywa($index)" style="visibility:{{job.iconwa}}"></a>
+		</div>
+	</ion-item>
+</div>
+<div ng-style="loadingList" class="item" style="border:none !important;"><img src="img/loading.gif" width="20px" style="position:absolute;top:0;left:50%;margin-left:-20px;"></div>
+</ion-content>
+</ion-view>
+<script id="mapModal.html" type="text/ng-template">
+	<div class="modal">
+		<header class="bar bar-header bar-dark">
+		  <button class="button button-clear" ng-click="closeModal()"><i class="icon ion-ios-close-empty"></i></button>
+        </header>
+        <ion-content class="has-header" overflow-scroll="false">
+			<div id="map" data-tap-disabled="true" style="width:100%;height:100%;"></div>
+        </ion-content>
+		<div ng-style="loading" style="position:absolute;width:100%;height:100%;bottom:0;display:none;">
+		<img src="img/loading.gif" style="width:100px;position: absolute;top: 50%;left: 50%;margin-top:-50px;margin-left:-50px;">
+		</div>
+  </div>
+</script>

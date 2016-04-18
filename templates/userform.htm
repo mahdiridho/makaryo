@@ -1,0 +1,15 @@
+<ion-view>
+<ion-content>
+	<form name="userForm" novalidate>
+	<div class="list padding">
+		<label class="item item-input item-floating-label">
+			<span class="input-label">Nomor phone</span>
+			<input type="tel" placeholder="Nomor phone" name="phone" ng-model="user.phone" maxlength="20" required>
+		</label>
+		<span style="color:red" ng-show="userForm.phone.$dirty && userForm.phone.$invalid">
+		<span ng-show="userForm.phone.$error.required">Nomor phone harus diisi.</span></span>
+		<button class="button button-large button-block button-assertive ion-paper-airplane" ng-click="auth(userForm.$invalid)"> Kirim</button>
+	</div>
+	</form>
+</ion-content>
+</ion-view>

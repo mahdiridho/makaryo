@@ -1,0 +1,41 @@
+<style>
+.scroll {
+    height: 100%;
+}
+</style>
+<ion-view>
+<ion-nav-bar class="bar-assertive">
+<ion-nav-buttons side="left">
+	<a class="button button-icon button-clear icon-right ion-gear-b" ui-sref="profile"></a> Setting
+</ion-nav-buttons>
+<ion-nav-buttons side="right">
+	Keluar <a class="button button-icon button-clear icon-right ion-log-out" ng-click='logout()'></a>
+</ion-nav-buttons>
+</ion-nav-bar>
+<ion-content overflow-scroll="false">
+<div id="map" data-tap-disabled="true" style="width:100%;height:50%;"></div>
+<div class="list padding">
+	<form name="jobForm" novalidate>
+	<label class="item item-input item-floating-label">
+		<span class="input-label">Detail lokasi kerjaan</span>
+		<input ng-click="setMap()" type="text" placeholder="Detail lokasi kerjaan" name="location" ng-model="job.location" maxlength="80" required>
+	</label>
+	<span style="color:red" ng-show="jobForm.location.$dirty && jobForm.location.$invalid">
+	<span ng-show="jobForm.location.$error.required">Lokasi kerjaan harus diisi.</span></span>
+	<label class="item item-input item-floating-label">
+		<span class="input-label">Judul kerjaan</span>
+		<input type="text" placeholder="Judul kerjaan" name="title" ng-model="job.title" maxlength="30" required>
+	</label>
+	<span style="color:red" ng-show="jobForm.title.$dirty && jobForm.title.$invalid">
+	<span ng-show="jobForm.title.$error.required">Nama anda harus diisi.</span></span>
+	<label class="item item-input item-floating-label">
+		<span class="input-label">Nomor whatsapp (optional)</span>
+		<input type="tel" placeholder="Nomor whatsapp (optional)" name="whatsapp" ng-model="job.whatsapp" maxlength="20">
+	</label>
+	<span style="color:red" ng-show="jobForm.whatsapp.$dirty && jobForm.whatsapp.$invalid">
+	<span ng-show="jobForm.whatsapp.$error.required">Nomor whatsapp harus diisi.</span></span>
+	<button class="button button-block button-dark ion-checkmark" ng-click="saveJob(jobForm.$invalid)"> Kirim</button>
+	</form>
+</div>
+</ion-content>
+</ion-view>

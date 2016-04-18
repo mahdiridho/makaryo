@@ -1,0 +1,14 @@
+<ion-view>
+<ion-content>
+	<form name="userP" novalidate>
+	<div class="list padding">
+		<label class="item item-input item-floating-label">
+			<span class="input-label">Kode PIN</span>
+			<input type="password" placeholder="Kode PIN" name="pcode" ng-model="user.pcode" maxlength="10" required>
+		</label>
+		<span style="color:red" ng-show="userP.pcode.$dirty && userP.pcode.$invalid">
+		<span ng-show="userP.pcode.$error.required">Kode PIN harus diisi.</span></span>
+		<button class="button button-large button-block button-assertive ion-key" ng-click="login(userP.$invalid)"> Masuk</button>
+	</div>
+</ion-content>
+</ion-view>

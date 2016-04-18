@@ -1,0 +1,68 @@
+<ion-view view-title="Informasi profile">
+<ion-nav-bar class="bar-light">
+<ion-nav-buttons side="right">
+	<button class="button button-icon button-clear icon-right ion-ios-close-empty" ng-click='goback()'></button>
+</ion-nav-buttons>
+</ion-nav-bar>
+<ion-content overflow-scroll="false">
+<div class="list padding">
+	<ion-item class="item item-icon-left item-icon-right">
+		<i class="icon ion-person"></i>
+		{{name}}
+		<i class="icon ion-edit" ng-click="editName()"></i>
+	</ion-item>
+	<ion-item class="item item-icon-left">
+		<i class="icon ion-iphone"></i>
+		{{phone}}
+	</ion-item>
+	<button class="button button-block button-royal ion-key" ng-click="changePw()"> Ganti PIN</button>
+	<button class="button button-block button-dark ion-key" ng-click="jobList()"> Daftar kerjaan saya</button>
+	<ion-item class="item" ng-repeat="job in jobs">
+		<h2 style="font-weight:bold">{{job.title}}</h2>
+		<p>{{job.datepost}}</p>
+	</ion-item>
+</div>
+</ion-content>
+</ion-view>
+<script id="editname.html" type="text/ng-template">
+	<div class="modal">
+		<header class="bar bar-header bar-dark">
+          <h1 class="title"> </h1>
+		  <button class="button button-clear" ng-click="closeModal()"><i class="icon ion-ios-close-empty"></i></button>
+        </header>
+        <ion-content class="has-header" overflow-scroll="false">
+		  <form name="nameForm" novalidate>
+			  <div class="list padding">
+				  <label class="item item-input item-floating-label">
+					  <span class="input-label">Nama anda</span>
+					  <input type="text" placeholder="Nama anda" name="name" ng-model="user.name" maxlength="15" required>
+						<span style="color:#ef473a" ng-show="nameForm.name.$dirty && nameForm.name.$invalid">
+						<span ng-show="nameForm.name.$error.required">Nama harus diisi.</span></span>
+				  </label>
+				<button class="button button-block button-balanced" ng-click="updateName(nameForm.$invalid)"><i class="icon ion-checkmark"></i> Update</button>
+			  </div>
+			</form>
+        </ion-content>
+  </div>
+</script>
+<script id="editpassword.html" type="text/ng-template">
+	<div class="modal">
+		<header class="bar bar-header bar-dark">
+          <h1 class="title"> </h1>
+		  <button class="button button-clear" ng-click="closeModal()"><i class="icon ion-ios-close-empty"></i></button>
+        </header>
+        <ion-content class="has-header" overflow-scroll="false">
+		  <form name="passwordForm" novalidate>
+			  <div class="list padding">
+				  <label class="item item-input item-floating-label">
+					  <span class="input-label">PIN baru</span>
+					  <input type="password" placeholder="PIN baru" name="pin" ng-model="user.pin" maxlength="10" required>
+						<span style="color:#ef473a" ng-show="passwordForm.pin.$dirty && passwordForm.pin.$invalid">
+						<span ng-show="passwordForm.pin.$error.required">PIN harus diisi.</span></span>
+				  </label>
+				<button class="button button-block button-balanced" ng-click="updatePIN(passwordForm.$invalid)"><i class="icon ion-checkmark"></i> Update</button>
+			  </div>
+			</form>
+        </ion-content>
+  </div>
+</script>

@@ -1,0 +1,14 @@
+<ion-view>
+<ion-content>
+	<form name="userV" novalidate>
+	<div class="list padding">
+		<label class="item item-input item-floating-label">
+			<span class="input-label">Kode verifikasi</span>
+			<input type="text" placeholder="Kode verifikasi" name="vcode" ng-model="user.vcode" maxlength="6" required>
+		</label>
+		<span style="color:red" ng-show="userV.vcode.$dirty && userV.vcode.$invalid">
+		<span ng-show="userV.vcode.$error.required">Kode verifikasi harus diisi.</span></span>
+		<button class="button button-large button-block button-assertive ion-paper-airplane" ng-click="verified(userV.$invalid)"> Kirim</button>
+	</div>
+</ion-content>
+</ion-view>
